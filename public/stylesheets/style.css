@@ -7,6 +7,10 @@ html, body {
   margin: 0;
 }
 
+#score, #time, #question {
+  font-family: monospace;
+}
+
 .upper-div {
   background-color: #c32a6f;
   border-radius: 5px;
@@ -23,22 +27,31 @@ html, body {
 
 #main-section {
   position: relative;
-  margin-top: 25vh;
+  margin-top: 20vh;
 }
 
 #outer-banner {
   position: absolute;
-  height: 120px;
+  height: 130px;
   left: -.15px;
-  top: -100px;
   z-index: -1;
   padding: 0 30px;
+  top: 20px;
+  transition: top .5s;
 }
 
 #inner-banner {
   background-color: #c32a6f;
   height: 100%;
   color: #fff07e;
+}
+
+#banner-title {
+  font-size: 2rem;
+}
+
+#banner-words {
+  font-weight: 500;
 }
 
 @media (min-width: 576px) {
