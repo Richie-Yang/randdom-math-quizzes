@@ -7,7 +7,7 @@ html, body {
   margin: 0;
 }
 
-#score, #time, #question {
+#score, #time, #question, .add-fx {
   font-family: monospace;
 }
 
@@ -43,7 +43,31 @@ html, body {
 #inner-banner {
   background-color: #c32a6f;
   height: 100%;
+}
+
+#inner-banner, .add-fx {
   color: #fff07e;
+}
+
+@keyframes slide-left {
+  0% { 
+    margin-left: 30px; 
+    opacity: 1;
+  }
+  75% { 
+    margin-left: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.add-fx {
+  position: absolute;
+  animation: slide-left;
+  opacity: 0;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1
 }
 
 #banner-title {
