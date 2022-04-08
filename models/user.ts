@@ -7,6 +7,9 @@ const userSchema = new Schema({
   score: {
     type: Number
   },
+  isPlayed: {
+    type: Boolean, default: false
+  },
   updatedAt: {
     type: Date, required: true, default: Date.now
   },
