@@ -21,6 +21,17 @@ module.exports = {
     return randomMathOp
   },
 
+  generateQuestion: function (numberCount: number = 3): string {
+    let question: string = ``
+    for (let x = 1; x < (numberCount * 2); x++) {
+      if (x % 2 === 0) {
+        question += ` ${this.pickRandomMathOp()} `
+        continue
+      } else question += this.createRandomNumber()
+    }
+    return question
+  },
+
   calculateAnswer: (question: string) => {
     let answer: number = 0
     console.log(question)
@@ -60,14 +71,7 @@ module.exports = {
     return answer
   },
 
-  generateQuestion: function (numberCount: number = 3): string {
-    let question: string = ``
-    for (let x = 1; x < (numberCount * 2); x++) {
-      if (x % 2 === 0) {
-        question += ` ${this.pickRandomMathOp()} `
-        continue
-      } else question += this.createRandomNumber()
-    }
-    return question
+  calculateResult: (incomingAnswer: number, answer: number): string => {
+    return incomingAnswer === answer ? 'Correct' : 'Incorrect'
   }
 }

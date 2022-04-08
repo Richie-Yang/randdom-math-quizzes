@@ -10,7 +10,7 @@ router.get('/', (req: any, res: any) => {
 })
 
 router.post('/submit', (req: any, res: any) => {
-  const { question, answer } = req.body
+  let { question, answer } = req.body
   const nextQuestion = mathHelpers.generateQuestion() 
   const response = { 
     status: 'Error!',
@@ -28,15 +28,16 @@ router.post('/submit', (req: any, res: any) => {
     response.message = 'Please input number format'
     return res.send(response)
   } 
+  answer = Number(answer)
 
   const calculatedAnswer: number = mathHelpers.calculateAnswer(question)
-  const CorrectOrWrong: string = calculatedAnswer === Number(answer)
-    ? 'Correct!'
-    : 'Incorrect!'
+  const CorrectOrWrong: string = mathHelpers.calculateResult(
+    answer, calculatedAnswer
+  )
   
   response.status = CorrectOrWrong
-  response.message = `Correct answer is ${calculatedAnswer}\nYour Answer is ${CorrectOrWrong}`
-  res.send(response)
+  response.message = `Correct answer is ${calculatedAnswer}, Your Answer is ${CorrectOrWrong}`
+  return res.send(response)
 })
 
 module.exports = router
