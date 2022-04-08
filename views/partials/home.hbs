@@ -1,0 +1,14 @@
+<div class="upper-div p-1">
+  <strong>Game Rule:</strong>
+  <p>It's the game based on series of math quizzes. You start off with 0 point and 30 seconds for countdown. If timer hits 0, game will be over, and each time you answer is correct, both another 30 seconds and 10 points score will be given. So let's try getting as many points as possible before the timer hits 0!</p>
+</div>
+
+<hr>
+
+<form action="/start" method="POST" class="d-flex flex-column">
+  <div class="input-group input-group-lg mb-1">
+    <span class="input-group-text" id="inputGroup-sizing-lg">Your name is</span>
+    <input id="name" type="text" class="form-control bg-dark" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="name" required>
+  </div>
+  <button id="submit-button" type="submit" class="btn btn-info mb-1">Let's get the game started!</button>
+</form>

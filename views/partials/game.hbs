@@ -1,0 +1,30 @@
+<div class="upper-div p-1 d-flex flex-column flex-md-row justify-content-between">
+  <strong>Score:
+    <span id="score" class="display-5 ps-2 pe-1">0</span>
+    <span class="dom-edge display-5 d-none">+10</span>
+  </strong>
+  <strong>Remained time:
+    <span id="time" class="display-5 ps-2">30</span>sec.
+    <span class="dom-edge display-5 d-none">+30</span>
+  </strong>
+</div>
+
+<br>
+
+<div class="upper-div p-1">
+  <strong>Question:</strong>
+  <p><span id="question">{{question}}</span> = ?</p>
+</div>
+
+<hr>
+
+<div class="d-flex flex-column">
+  <div class="input-group input-group-lg mb-1">
+    <span class="input-group-text" id="inputGroup-sizing-lg">Your answer is</span>
+    <input id="answer" type="number" class="form-control bg-dark" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-lg">
+  </div>
+  <button id="submit-button" type="button" class="btn btn-info mb-1">Submit</button>
+</div>
+
+<script src="/javascripts/form-submit.js"></script>

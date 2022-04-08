@@ -1,15 +1,48 @@
 const router = require('express').Router()
 const base64 = require('base-64')
 const mathHelpers = require('../helpers/math-helpers')
+const User = require('../models/user')
 let token: string = ''
 
 router.get('/', (req: any, res: any) => {
-  const question = mathHelpers.generateQuestion()
-  token = base64.encode(question)
-  res.render('index', { question })
+  return res.render('index')
 })
 
-router.post('/submit', (req: any, res: any) => {
+router.post('/start', async (req: any, res: any) => {
+  try {
+    const { name } = req.body
+    console.log(name)
+    if (!name.trim()) throw new Error('')
+
+    const user = await User.findOne({ name })
+    if (user) throw new Error('')
+
+    await User.create({ name })
+    return res.redirect('/game')
+
+  } catch (err) { 
+    console.error(err)
+    res.redirect('/') 
+  }
+})
+
+router.get('/game/:userId', async (req: any, res: any) => {
+  try {
+    const { userId } = req.params
+    const user = await User.findById(userId)
+    if (!user) throw new Error('')
+
+    const question = mathHelpers.generateQuestion()
+    token = base64.encode(question)
+    return res.render('index', { question, game: true })
+
+  } catch (err) {
+    console.error(err)
+    res.redirect('/')
+  }
+})
+
+router.post('/game/submit', (req: any, res: any) => {
   let { question, answer } = req.body
   const nextQuestion = mathHelpers.generateQuestion() 
   const response = { 
