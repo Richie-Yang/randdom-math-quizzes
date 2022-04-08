@@ -7,20 +7,55 @@ html, body {
   margin: 0;
 }
 
+#score, #time, #question {
+  font-family: monospace;
+}
+
 .upper-div {
   background-color: #c32a6f;
   border-radius: 5px;
 }
 
-#main-section {
-  margin-top: 20vh;
-  border-radius: 15px;
+#main-section, #inner-banner {
   box-shadow: 0 0 25px #f8f8f8;
+  border-radius: 15px;
+}
+
+#outer-banner, #inner-banner {
+  width: 100%;
+}
+
+#main-section {
+  position: relative;
+  margin-top: 20vh;
+}
+
+#outer-banner {
+  position: absolute;
+  height: 130px;
+  left: -.15px;
+  z-index: -1;
+  padding: 0 30px;
+  top: 20px;
+  transition: top .5s;
+}
+
+#inner-banner {
+  background-color: #c32a6f;
+  height: 100%;
+  color: #fff07e;
+}
+
+#banner-title {
+  font-size: 2rem;
+}
+
+#banner-words {
+  font-weight: 500;
 }
 
 @media (min-width: 576px) {
   #main-section {
-    margin-top: 25vh;
     max-width: 500px;
   }
 }
