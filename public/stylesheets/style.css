@@ -7,7 +7,7 @@ html, body {
   margin: 0;
 }
 
-#score, #time, #question, .add-fx {
+#score, #time, #question, .dom-edge {
   font-family: monospace;
 }
 
@@ -54,15 +54,12 @@ html, body {
     margin-left: 30px; 
     opacity: 1;
   }
-  75% { 
-    margin-left: 0;
-  }
-  100% {
-    opacity: 0;
-  }
+  75% { margin-left: 0; }
+  100% { opacity: 0; }
 }
 
-.add-fx {
+.slide-left {
+  color: #fff07e;
   position: absolute;
   animation: slide-left;
   opacity: 0;

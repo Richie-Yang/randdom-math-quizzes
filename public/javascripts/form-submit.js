@@ -41,8 +41,18 @@ submitButton.addEventListener('click', function onSubmitButtonClicked() {
 
     switch (res.data.status) {
       case 'Correct':
+        const domEdges = document.querySelectorAll('.dom-edge')
+        domEdges.forEach(domEdge => {
+          domEdge.classList.remove('d-none')
+          domEdge.classList.add('slide-left')
+          setTimeout(() => {
+            domEdge.classList.add('d-none')
+            domEdge.classList.remove('slide-left')
+          }, 1000)
+        })
         score.innerHTML = Number(score.innerHTML) + 10
         time.innerHTML = Number(time.innerHTML) + 30
+
       default:
         bannerTitle.innerHTML = res.data.status
         bannerWords.innerHTML = res.data.message
