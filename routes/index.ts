@@ -11,11 +11,10 @@ router.get('/', (req: any, res: any) => {
 router.post('/start', async (req: any, res: any) => {
   try {
     const { name } = req.body
-    console.log(name)
-    if (!name.trim()) throw new Error('')
+    if (!name.trim()) throw new Error('Please do not leave blank for name input!')
 
     const user = await User.findOne({ name })
-    if (user) throw new Error('')
+    if (user) throw new Error('Input name is duplicated, please use another one!')
 
     await User.create({ name })
     return res.redirect('/game')

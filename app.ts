@@ -1,9 +1,14 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const express = require('express')
 const { engine } = require('express-handlebars')
 const routes = require('./routes')
 
 const app = express()
 const PORT:number = Number(process.env.PORT) || 3000
+require('./config/mongoose')
 
 app.engine('hbs', engine({
   defaultLayouts: 'main',
