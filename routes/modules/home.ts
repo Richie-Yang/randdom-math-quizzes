@@ -7,7 +7,7 @@ homeLocal.router.get('/', (req: any, res: any) => {
   return res.render('index')
 })
 
-homeLocal.router.post('/start', async (req: any, res: any) => {
+homeLocal.router.post('/start', async (req: any, res: any, next: any) => {
   try {
     const { name } = req.body
     const { User } = homeLocal
@@ -20,10 +20,7 @@ homeLocal.router.post('/start', async (req: any, res: any) => {
     user = await User.create({ name })
     return res.redirect(`/game/${user.id}`)
 
-  } catch (err) {
-    console.error(err)
-    res.redirect('/')
-  }
+  } catch (err) { next(err) }
 })
 
 module.exports = homeLocal.router

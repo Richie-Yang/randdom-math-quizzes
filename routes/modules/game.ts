@@ -6,23 +6,13 @@ const gameLocal = {
   token: ''
 }
 
-gameLocal.router.get('/:userId', async (req: any, res: any) => {
-  try {
-    const { mathHelpers, User, base64 } = gameLocal
-    let { token } = gameLocal
-    const { userId } = req.params
-    const user = await User.findById(userId)
-    if (!user) throw new Error('User is not found, please use a name to start the game!')
-    if (user.isPlayed) throw new Error('Your play quota has reached to the limit!')
+gameLocal.router.get('/', async (req: any, res: any) => {
+  const { mathHelpers, base64 } = gameLocal
+  let { token } = gameLocal
 
-    const question = mathHelpers.generateQuestion()
-    token = base64.encode(question)
-    return res.render('index', { name: user.name, question, game: true })
-
-  } catch (err) {
-    console.error(err)
-    res.redirect('/')
-  }
+  const question = mathHelpers.generateQuestion()
+  token = base64.encode(question)
+  return res.render('index', { question, game: true })
 })
 
 gameLocal.router.post('/submit', (req: any, res: any) => {
