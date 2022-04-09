@@ -30,10 +30,13 @@ html, body {
   margin-top: 20vh;
 }
 
-#outer-banner {
+#outer-banner, #float-message {
   position: absolute;
-  height: 130px;
   left: -.15px;
+}
+
+#outer-banner {
+  height: 130px;
   z-index: -1;
   padding: 0 30px;
   top: 20px;
@@ -47,6 +50,10 @@ html, body {
 
 #inner-banner, .add-fx {
   color: #fff07e;
+}
+
+#float-message {
+  top: -125px;
 }
 
 @keyframes slide-left {

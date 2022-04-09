@@ -12,14 +12,17 @@ homeLocal.router.post('/start', async (req: any, res: any, next: any) => {
     const { name } = req.body
     const { User } = homeLocal
 
-    if (!name.trim()) throw new Error('Please do not leave blank for name input!')
+    if (!name.trim()) throw new Error(
+      'Please do not leave blank for name input!'
+    )
 
     let user = await User.findOne({ name })
-    if (user) throw new Error('Input name is duplicated, please use another one!')
+    if (user) throw new Error(
+      'Input name is duplicated, please use another one!'
+    )
 
     user = await User.create({ name })
     return res.redirect(`/game/${user.id}`)
-
   } catch (err) { next(err) }
 })
 

@@ -34,8 +34,9 @@ function bannerAction (nonPersistent = true) {
 
 submitButton.addEventListener('click', function onSubmitButtonClicked() {
   (async () => {
+    const { userId } = submitButton.dataset
     submitButton.classList.add('disabled')
-    const res = await axios.post('/game/submit', { 
+    const res = await axios.post(`/game/${userId}/submit`, { 
       question: question.innerText, answer: answer.value
     })
 

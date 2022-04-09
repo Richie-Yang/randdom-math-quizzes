@@ -2,22 +2,19 @@ const gameLocal = {
   router: require('express').Router(),
   base64: require('base-64'),
   mathHelpers: require('../../helpers/math-helpers'),
-  User: require('../../models/user'),
   token: ''
 }
 
-gameLocal.router.get('/', async (req: any, res: any) => {
+gameLocal.router.get('/', (req: any, res: any) => {
   const { mathHelpers, base64 } = gameLocal
-  let { token } = gameLocal
 
   const question = mathHelpers.generateQuestion()
-  token = base64.encode(question)
+  gameLocal.token = base64.encode(question)
   return res.render('index', { question, game: true })
 })
 
 gameLocal.router.post('/submit', (req: any, res: any) => {
   const { mathHelpers, base64 } = gameLocal
-  let { token } = gameLocal
   let { question, answer } = req.body
   const nextQuestion = mathHelpers.generateQuestion()
   const response = {
@@ -26,11 +23,11 @@ gameLocal.router.post('/submit', (req: any, res: any) => {
     question: nextQuestion
   }
 
-  if (base64.encode(question) !== token) {
+  if (base64.encode(question) !== gameLocal.token) {
     response.message = 'Something went wrong'
     return res.send(response)
   }
-  token = base64.encode(nextQuestion)
+  gameLocal.token = base64.encode(nextQuestion)
 
   if (isNaN(Number(answer)) || answer === '') {
     response.message = 'Please input number format'
@@ -44,7 +41,8 @@ gameLocal.router.post('/submit', (req: any, res: any) => {
   )
 
   response.status = CorrectOrWrong
-  response.message = `Correct answer is ${calculatedAnswer}, Your Answer is ${CorrectOrWrong}`
+  response.message = 
+    `Correct answer is ${calculatedAnswer}, Your Answer is ${CorrectOrWrong}`
   return res.send(response)
 })
 
